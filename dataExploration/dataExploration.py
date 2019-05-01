@@ -1,4 +1,6 @@
 get_ipython().run_line_magic('matplotlib', 'notebook')
+import sys
+sys.path.append('../getData')
 from getData import getData
 import pandas as pd
 import pymongo as mongo
@@ -106,7 +108,6 @@ dfByMonthGroup.sort_values("purchaseDate", inplace=True)
 
 dfByMonthGroup["purchaseDate"] = dfByMonthGroup["purchaseDate"].dt.strftime('%m-%Y')
 
-
 ax4 = dfByMonthGroup.plot(x="purchaseDate",y="purchaseTotal");
 
 ax4.xaxis.set_major_locator(plt.MaxNLocator(25))
@@ -126,3 +127,4 @@ plt.subplots_adjust(bottom=0.30)
 plt.title("Cantidad de Bs. recaudados entre Enero 2016 a Agosto 2017 \n")
 plt.legend(["Total de compras (Millones de Bs.)"])
 plt.xlabel("Fecha de compra");
+

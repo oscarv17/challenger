@@ -1,3 +1,6 @@
+import sys
+sys.path.append('../dataPreparation')
+sys.path.append('../getData')
 from dataPreparation import user_item
 import pandas as pd
 import numpy as np
@@ -22,6 +25,7 @@ def prediction(users, similarity):
     pred = similarity.dot(users) / np.array([np.abs(similarity).sum(axis=1)]).T
     return pred
 
+
 recommendations=prediction(train_set.values, similarity)
 
 
@@ -40,7 +44,6 @@ def calculate_target_set(val_set):
             target[user, rats] = val_set[user, rats]
     return val_set_aux, target
 
-
 test_set_b, target_set = calculate_target_set(test_set.values)
 
 test_set_aux=csr_matrix(test_set_b)
@@ -53,8 +56,6 @@ recommendations_val=prediction(test_set_b, similarity_val)
 sqrt(mean_squared_error(target_set[target_set.nonzero()], recommendations_val[target_set.nonzero()]))
 
 mean_squared_error(target_set[target_set.nonzero()], recommendations_val[target_set.nonzero()])
-
-#model 2
 
 # split data
 train_set, test_set = train_test_split(user_item, test_size=0.30, random_state=2000)
@@ -73,6 +74,7 @@ def prediction_general(user, similarity):
 recommendations_2 = prediction_general(train_set.values, similarity_2)
 
 pd.DataFrame(recommendations_2)
+
 
 # Eval 2
 

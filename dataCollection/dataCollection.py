@@ -1,3 +1,5 @@
+# Importing libraries
+
 import pandas as pd
 import pymysql as mysql
 import pymongo as mongo
@@ -8,7 +10,6 @@ user = "chllg"
 password = "123456"
 database = "agora"
 mysql_con = mysql.connect(host=hostname, user=user, passwd=password, db=database )
-
 
 # MongoDB connection
 client = mongo.MongoClient('mongodb://localhost:27017/challenger')
